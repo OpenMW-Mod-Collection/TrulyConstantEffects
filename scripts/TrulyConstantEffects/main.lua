@@ -1,5 +1,3 @@
--- version: 1.0
-
 require("scripts.TrulyConstantEffects.playerState")
 
 local playerState
@@ -18,6 +16,9 @@ return {
             end
         end,
         onLoad = function()
+            playerState = PlayerState:new()
+        end,
+        onInit = function()
             playerState = PlayerState:new()
         end
     }
