@@ -1,5 +1,11 @@
 # Truly Constant Effects
 
+## 1.0.2
+
+### Fixes
+
+- Fixed resistance, spell absorption and reflect interfering with effect reapplication
+
 ## 1.0.1
 
 ### Fixes

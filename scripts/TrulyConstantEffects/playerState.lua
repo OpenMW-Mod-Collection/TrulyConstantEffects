@@ -86,7 +86,11 @@ function PlayerState:new()
                     types.Actor.activeSpells(omw_self):add({
                         id = "tce_" .. spellId,
                         effects = { 0 },
-                        stackable = true
+                        stackable = true,
+                        ignoreResistances = true,
+                        ignoreSpellAbsorption = true,
+                        ignoreReflect = true,
+                        quiet = true,
                     })
                 end
             end
