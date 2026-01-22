@@ -1,6 +1,6 @@
 require("scripts.TrulyConstantEffects.playerState")
 
-local playerState
+local playerState = PlayerState:new()
 local isSecondFrame = false
 
 return {
@@ -15,11 +15,5 @@ return {
                 isSecondFrame = true
             end
         end,
-        onLoad = function()
-            playerState = PlayerState:new()
-        end,
-        onInit = function()
-            playerState = PlayerState:new()
-        end
     }
 }

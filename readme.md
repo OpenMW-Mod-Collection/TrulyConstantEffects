@@ -7,10 +7,12 @@ In normal Morrowind if your summon from constant enchantment dies, it doesn't re
 Here's demos of [respawning summons](https://youtu.be/snA1-ZdR0JQ) and [invisibility](https://youtu.be/vfQN6VUr7SY).
 
 ## Supported effects
+
 - Invisibility
 - All summons from Morrowind, Tribunal and Bloodmoon
 
 ## FAQ
+
 Q: What about annoying sound and visual effects?\
 A: Invisibility reapplies silently, without both sfx and vfx (unintentional, but works for me). Summons respawn as usual, with sfx and vfx.
 
@@ -30,9 +32,11 @@ Q: Bound equipment support?\
 A: Not yet, but might add it in the future.
 
 ## Installation
+
 Installs like any other OpenMW mod. Not sure about pre-0.49 OpenMW support, but you should use newest builds anyway.
 
 ## Special Thanks
+
 - **Grey, S3ctor and others in OpenMW Lua development chat** - helping in learning modding and OpenMW Lua API
 - **Uvirith's Legacy dev team** - giving an idea for the mod
 - **OpenMW community** - inspiring me
