@@ -2,9 +2,10 @@ page_name: "Truly Constant Effects"
 page_description: "Reapplies invisibility and summon effects from constant enchanted equipment."
 
 group_name: "General"
-reapplyInvis_name: "Reapply Insibility"
-reapplyInvis_description: "default = Yes"
-reapplySummons_name: "Reapply Summons"
-reapplySummons_description: "default = Yes"
-showMessages_name: "Enable messages"
-showMessages_description: "default = No"
+reapplyInvis_name: "Reapply Invisibility"
+reapplySummons_name: "Resummon Summons"
+cooldown_name: Script Cooldown (sec)
+cooldown_desc: >
+  Set it to 0 to make script check your equipment and active spells every frame
+  (not recommended, but possible).
+showMessages_name: "Enable Messages"

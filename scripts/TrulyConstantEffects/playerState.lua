@@ -1,4 +1,3 @@
-local storage = require('openmw.storage')
 local omw_self = require("openmw.self")
 local types = require("openmw.types")
 local core = require("openmw.core")
@@ -9,28 +8,30 @@ require("scripts.TrulyConstantEffects.utils")
 ---@class PlayerState
 ---@field spellEffectCounts table
 ---@field enchEffectCounts table
-PlayerState = {}
+local playerState = {}
 
 ---PlayerState constructor
 ---@return PlayerState
-function PlayerState:new()
+function playerState:new(settings)
     local public = {}
-    public.spellEffectCounts = CountEffects().spellEffectCounts
-    public.enchEffectCounts = CountEffects().enchEffectCounts
+    public.currentEffectCounts = CountEffects()
+    public.spellEffectCounts = public.currentEffectCounts.spellEffectCounts
+    public.enchEffectCounts = public.currentEffectCounts.enchEffectCounts
 
     local private = {}
     private.l10n = core.l10n("TrulyConstantEffects")
+    private.settings = settings
 
     ---Checks if state is up to date
     ---
     ---If it's not, updates the state
     ---@return boolean
     function public:isUpToDate()
-        local currentEffectCounts = CountEffects()
-        if (not TablesAreSame(public.spellEffectCounts, currentEffectCounts.spellEffectCounts) or
-                not TablesAreSame(public.enchEffectCounts, currentEffectCounts.enchEffectCounts)) then
-            public.spellEffectCounts = currentEffectCounts.spellEffectCounts
-            public.enchEffectCounts = currentEffectCounts.enchEffectCounts
+        public.currentEffectCounts = CountEffects()
+        if not TablesAreSame(public.spellEffectCounts, public.currentEffectCounts.spellEffectCounts)
+            or not TablesAreSame(public.enchEffectCounts, public.currentEffectCounts.enchEffectCounts) then
+            public.spellEffectCounts = public.currentEffectCounts.spellEffectCounts
+            public.enchEffectCounts = public.currentEffectCounts.enchEffectCounts
             return false
         end
         return true
@@ -64,10 +65,9 @@ function PlayerState:new()
 
     ---Adds or removes spell, depending on the private:getEffectDifference()
     function public:updateSpells()
-        local settings = storage.playerSection("SettingsTrulyConstantEffects")
         for spellId, count in pairs(private:getEffectDifference()) do
             if count < 0 then
-                if settings:get("showMessages") then ui.showMessage(private.l10n("removeSpell_message")) end
+                if private.settings:get("showMessages") then ui.showMessage(private.l10n("removeSpell_message")) end
                 -- remove count spells
                 for _ = count + 1, 0 do
                     for _, spellParams in pairs(types.Actor.activeSpells(omw_self)) do
@@ -80,7 +80,7 @@ function PlayerState:new()
                     (spellId == "invisibility" and settings:get("reapplyInvis"))
                     or (spellId ~= "invisibility" and settings:get("reapplySummons"))
                 ) then
-                if settings:get("showMessages") then ui.showMessage(private.l10n("addSpell_message")) end
+                if private.settings:get("showMessages") then ui.showMessage(private.l10n("addSpell_message")) end
                 -- add count spells
                 for _ = 0, count - 1 do
                     types.Actor.activeSpells(omw_self):add({
@@ -101,3 +101,5 @@ function PlayerState:new()
     self.__index = self
     return public
 end
+
+return playerState

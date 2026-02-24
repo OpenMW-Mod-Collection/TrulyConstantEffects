@@ -1,5 +1,18 @@
 # Truly Constant Effects
 
+## 1.1
+
+### Features
+
+- Added script cooldown
+- Updated the codebase a little
+- Marginally improved performance as a result
+
+### Fixes
+
+- Fixed typos in settings
+- Added 1 nil check
+
 ## 1.0.3
 
 ### Fixes

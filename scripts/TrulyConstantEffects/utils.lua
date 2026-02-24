@@ -50,6 +50,7 @@ function GetActiveConstSpells()
         if item ~= nil then
             local itemRecord = item.type.records[item.recordId]
             local enchantmentRecord = core.magic.enchantments.records[itemRecord.enchant]
+            if not enchantmentRecord then goto continue end
 
             -- if enchantment on the item is constant
             if enchantmentRecord.type == core.magic.ENCHANTMENT_TYPE.ConstantEffect then
@@ -62,6 +63,7 @@ function GetActiveConstSpells()
                 end
             end
         end
+        ::continue::
     end
 
     return constEquipmentSpells
@@ -137,7 +139,7 @@ function CountEffects()
     for _, spell in pairs(types.Actor.activeSpells(omw_self)) do
         if string.find(spell.id, "^tce_") then
             local effect = spell.effects[1]
-            
+
             -- no clue how a spell can have no effects, but sure
             if effect == nil then goto continue end
 
