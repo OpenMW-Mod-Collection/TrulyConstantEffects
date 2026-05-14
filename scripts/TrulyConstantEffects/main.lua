@@ -3,7 +3,8 @@ local storage = require("openmw.storage")
 local PlayerState = require("scripts.TrulyConstantEffects.playerState")
 
 local settings = storage.playerSection("SettingsTrulyConstantEffects")
-local updateTime = math.random() * math.max(0, settings:get('cooldown'))
+local checkEvery = math.max(0, settings:get('cooldown'))
+local updateTime = math.random() * checkEvery
 local playerState = PlayerState:new(settings)
 local isSecondFrame = false
 
@@ -12,7 +13,6 @@ return {
         onUpdate = function(dt)
             -- cooldown
             updateTime = updateTime + dt
-            local checkEvery = math.max(0, settings:get('cooldown'))
 
             if updateTime < checkEvery then return end
 

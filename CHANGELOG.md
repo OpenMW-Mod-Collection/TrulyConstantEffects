@@ -1,5 +1,9 @@
 # Truly Constant Effects
 
+## 1.1.1
+
+- Minor performance optimization
+
 ## 1.1
 
 ### Features
